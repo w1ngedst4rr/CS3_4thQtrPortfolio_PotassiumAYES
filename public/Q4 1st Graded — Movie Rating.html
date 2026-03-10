@@ -1,1 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Movie List</title>
 
+<style>
+body{
+    font-family: Arial;
+    background:#f5f5f5;
+}
+
+.container{
+    width:500px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:10px;
+}
+
+h2{
+    text-align:center;
+}
+
+input,select{
+    width:100%;
+    padding:10px;
+    margin-bottom:15px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#1976d2;
+    color:white;
+    border:none;
+    border-radius:6px;
+    font-size:16px;
+}
+
+.stars span{
+    font-size:25px;
+    cursor:pointer;
+    color:gray;
+}
+
+.stars .active{
+    color:gold;
+}
+
+.movieItem{
+    background:#f1f1f1;
+    padding:10px;
+    margin-top:10px;
+    border-radius:6px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Add a Movie</h2>
+
+<label>Title:</label>
+<input id="title">
+
+<label>Year:</label>
+<input id="year">
+
+<label>Genre:</label>
+<select id="genre">
+<option>Action</option>
+<option>Comedy</option>
+<option>Drama</option>
+<option>Fantasy</option>
+<option>Horror</option>
+</select>
+
+<label>Rating:</label>
+<div class="stars">
+<span data-value="1">★</span>
+<span data-value="2">★</span>
+<span data-value="3">★</span>
+<span data-value="4">★</span>
+<span data-value="5">★</span>
+</div>
+
+<br><br>
+
+<button onclick="addMovie()">Add Movie</button>
+
+<h2>Movie List</h2>
+
+<div id="movieList"></div>
+
+</div>
+
+<script>
+
+let rating = 0
+
+let stars = document.querySelectorAll(".stars span")
+
+stars.forEach(star=>{
+    star.addEventListener("click",function(){
+
+        rating = this.dataset.value
+
+        stars.forEach(s=>s.classList.remove("active"))
+
+        for(let i=0;i<rating;i++){
+            stars[i].classList.add("active")
+        }
+
+    })
+})
+
+
+let movies = JSON.parse(localStorage.getItem("movies")) || []
+
+displayMovies()
+
+
+function addMovie(){
+
+let title = document.getElementById("title").value
+let year = document.getElementById("year").value
+let genre = document.getElementById("genre").value
+
+let movie = {
+title:title,
+year:year,
+genre:genre,
+rating:rating
+}
+
+movies.push(movie)
+
+localStorage.setItem("movies", JSON.stringify(movies))
+
+displayMovies()
+
+}
+
+function displayMovies(){
+
+let list = document.getElementById("movieList")
+
+list.innerHTML=""
+
+movies.forEach(movie=>{
+
+let stars=""
+
+for(let i=0;i<movie.rating;i++){
+stars+="⭐"
+}
+
+list.innerHTML += `
+<div class="movieItem">
+${movie.title} (${movie.year}) - ${movie.genre}, Rating: ${stars}
+</div>
+`
+
+})
+
+}
+
+</script>
+
+</body>
+</html>
