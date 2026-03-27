@@ -117,6 +117,7 @@ c.) How do you differentiate sticky from fixed (you can research on sticky)?
 d.) If you were designing a webpage for a school event, how might you use positioning to highlight important information? Please give concrete examples.
 
 If I were designing a school event page:
+
     1.) Use fixed for a navigation bar so it stays visible
     2.) Use absolute to place labels like “NEW” or “IMPORTANT” on images
     3.) Use relative + absolute to position badges inside sections
