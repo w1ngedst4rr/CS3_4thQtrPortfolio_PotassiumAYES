@@ -2,137 +2,202 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <meta name="author" content="Sir Roy/Al Mendoza">
-  <meta name="description" content="testing and debugging">
-  <meta name="keywords" content="testing and debugging">
-  <title>CS3 </title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Leian Sandhel A.">
+  <meta name="description" content="Testing and Debugging - Nlogonia">
+  <title>Error Logs - AYES, Leian Sandhel A. - 9-Potassium</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@300&family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
   <style>
-    tr:nth-child(1) ~ tr:nth-child(odd) {
-      background-color: lightgray;
-      color: black;
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+      color: #2D1B4D;
+      margin: 0;
+      padding: 0;
     }
-    td, th {
-      padding: 10px;
+
+    header {
+      background-color: #4B3791;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: #DCD0FF;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    section {
+      padding: 40px 20px;
+    }
+
     table {
-      width: 90%;
+      width: 95%;
+      max-width: 1000px;
       margin: 0 auto;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      overflow: hidden;
     }
+
     caption {
-      font-size: 2em;
+      font-size: 1.8em;
       font-weight: bold;
-      padding: 10px;
+      padding: 20px;
+      color: #4B3791;
+    }
+
+    th {
+      background-color: #7B61FF;
+      color: white;
+      padding: 15px;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+
+    td {
+      padding: 15px;
+      border-bottom: 1px solid #E1BEE7;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    tr:nth-child(even) {
+      background-color: #F8F4FF;
+    }
+
+    tr:hover {
+      background-color: #F0E6FF;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 0;
+    }
+
+    .icon {
+      width: 32px;
+      height: 32px;
+      display: inline-block;
+      background: url('images/sprites.png') no-repeat;
+      margin: 0 10px;
+      opacity: 0.8;
     }
     
+    .facebook { background-position: -226px -129px; }
+    .twitter { background-position: -340px -129px; }
+    .github { background-position: -456px -129px; }
   </style>
 </head>
 
 <body>
   <header>
+    <h1>Leian Sandhel A. / 9-Potassium</h1>
     <nav>
-      <a href="index.html#start">Table</a>
-      <a href="index.html#input">Input</a>
-      <a href="index.html#output">Output</a>
+      <a href="index.html">Back to Exercise</a>
+      <a href="../index.html">Main Portfolio</a>
     </nav>
-    
-    <h1 style="padding: 30px">Your Name / Section Mar 2026 </h1>
   </header>
 
   <section id="table">
     <table> 
-      <caption> Error Logs - place errors found in the table below</caption>
-      <tr class="rColor">
-        <th> item# </th> 
-        <th> code line#<br/>CSS or JS </th> 
-        <th> Description</th>
-        <th> Correction Done</th>
-      </tr>
-      <tr>
-        <td> 1 </td> 
-        <td> </td> 
-        <td> </td>
-        <td> </td>
-      </tr>
-      <tr>
-        <td> 2 </td> 
-        <td> </td> 
-        <td> </td>
-        <td> </td>
-      </tr>
-      <tr>
-        <td> 3 </td> 
-        <td> </td> 
-        <td> </td>
-        <td> </td>
-      </tr>
-      <tr>
-        <td> 4 </td> 
-        <td> </td> 
-        <td> </td>
-        <td> </td>
-      </tr>
-      <tr>
-        <td> 5 </td> 
-        <td> </td> 
-        <td> </td>
-        <td> </td>
-      </tr>
-      <tr>
-        <td> 6 </td> 
-        <td> </td> 
-        <td> </td>
-        <td> </td>
-      </tr>
-      <tr>
-        <td> 7 </td> 
-        <td> </td> 
-        <td> </td>
-        <td> </td>
-      </tr>
-      <tr>
-        <td> 8 </td> 
-        <td> </td> 
-        <td> </td>
-        <td> </td>
-      </tr>
-      <tr>
-        <td> 9 </td> 
-        <td> </td> 
-        <td> </td>
-        <td> </td>
-      </tr>
-      <tr>
-        <td> 10 </td> 
-        <td> </td> 
-        <td> </td>
-        <td> </td>
-      </tr>
-     
+      <caption>Error Logs - Nlogonia Debugging</caption>
+      <thead>
+        <tr>
+          <th>item#</th> 
+          <th>Location (CSS/JS)</th> 
+          <th>Description of Error</th>
+          <th>Correction Done</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td> 
+          <td>JS Line 19</td> 
+          <td>Syntax error: <code>styleleft</code> is not a valid property.</td>
+          <td>Changed to <code>style.left</code> to correctly access the style object.</td>
+        </tr>
+        <tr>
+          <td>2</td> 
+          <td>JS Line 20</td> 
+          <td>Syntax error: <code>stylebottom</code> is not a valid property.</td>
+          <td>Changed to <code>style.bottom</code> to correctly access the style object.</td>
+        </tr>
+        <tr>
+          <td>3</td> 
+          <td>JS Line 3</td> 
+          <td>Logical error: Variables <code>x0, y0, x, y</code> were used without being defined.</td>
+          <td>Used <code>document.getElementById().value</code> to fetch values from inputs.</td>
+        </tr>
+        <tr>
+          <td>4</td> 
+          <td>JS Line 8</td> 
+          <td>Reference error: <code>in1</code> and <code>out1</code> were not defined as variables.</td>
+          <td>Defined variables using <code>document.getElementById</code> before setting innerHTML.</td>
+        </tr>
+        <tr>
+          <td>5</td> 
+          <td>JS Line 24</td> 
+          <td>Logic error: The code lacked a specific check for border lines (divisa).</td>
+          <td>Added an <code>if</code> condition to check if X equals N or Y equals M.</td>
+        </tr>
+        <tr>
+          <td>6</td> 
+          <td>CSS Line 35</td> 
+          <td>Selector error: <code>nav a :hover</code> targets children instead of the link itself.</td>
+          <td>Removed the extra space to create the correct pseudo-class <code>nav a:hover</code>.</td>
+        </tr>
+        <tr>
+          <td>7</td> 
+          <td>CSS Line 25</td> 
+          <td>Layout error: <code>nav a</code> set to <code>display: block</code> caused vertical stacking.</td>
+          <td>Changed to <code>display: inline-block</code> for horizontal navigation.</td>
+        </tr>
+        <tr>
+          <td>8</td> 
+          <td>CSS Line 17</td> 
+          <td>Requirement error: Navigation bar scrolled with the page content.</td>
+          <td>Applied <code>position: fixed</code> and <code>top: 0</code> to keep it at the top.</td>
+        </tr>
+        <tr>
+          <td>9</td> <td>CSS Line 68</td> 
+          <td>Positioning error: <code>.point</code> had no position type defined.</td>
+          <td>Added <code>position: absolute</code> so it respects top/left coordinates.</td>
+        </tr>
+        <tr>
+          <td>10</td> <td>CSS Line 130</td> 
+          <td>Visual error: Sprite hover positions were slightly misaligned.</td>
+          <td>Updated <code>background-position</code> coordinates to match sprite sheet icons.</td>
+        </tr>
+      </tbody>
     </table>
-    <hr>
   </section>
   
-   
-  <!--- anchors for socmed site are done with image sprites -->
   <footer>
-    <a href="https://facebook.com"> 
     <div class="icon facebook"></div>
-    </a>
-    <a href="https://twitter.com">
     <div class="icon twitter"></div>
-    </a>
-    <a href="https://github.com">
     <div class="icon github"></div>
-    </a>
+    <p style="color: #4B3791; font-size: 12px;">9-Potassium - March 31, 2026</p>
   </footer>
- 
 </body>
-
 </html>
