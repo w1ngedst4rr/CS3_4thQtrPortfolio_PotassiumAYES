@@ -13,7 +13,7 @@ function plotPoint() {
     var point = document.createElement('div');  
     point.className = 'point';
 
-    /* edit: Changed styleleft to style.left and stylebottom to style.bottom 
+    /* edit: changed styleleft to style.left and stylebottom to style.bottom 
        (Coordinate + Offset to center - half of point width)
     */
     point.style.left = (x - x0 + 200 - 5) + 'px'; 
