@@ -1,120 +1,157 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Q3 View Signups</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"> 
+    <title>Fei's Portfolio!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-image: url('https://images8.alphacoders.com/139/thumb-1920-1394072.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; 
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-<style>
-body {
-    font-family: Arial;
-    text-align: center;
-    background-color: #f4f6f8;
-}
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 900px;
+            margin: auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
 
-table {
-    margin: auto;
-    border-collapse: collapse;
-    width: 90%;
-    background-color: #fff;
-}
+        h1 { margin-bottom: 5px; font-size: 24px; }
+        .author { margin-top: 0; color: #555; font-weight: bold; }
+        .back-link { display: inline-block; margin-bottom: 15px; color: blue; text-decoration: underline; cursor: pointer; }
 
-th, td {
-    border: 1px solid black;
-    padding: 8px;
-}
+        .filter-section { margin-bottom: 15px; }
+        select { padding: 5px; border-radius: 4px; width: 200px; }
 
-th {
-    background-color: #4a76d1;
-    color: white;
-}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
 
-select {
-    margin: 15px;
-    padding: 5px;
-}
+        th {
+            background-color: #000080;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-size: 14px;
+        }
 
-a {
-    display: inline-block;
-    margin-top: 20px;
-    text-decoration: none;
-    color: #fff;
-    background-color: #f7931e;
-    padding: 7px 12px;
-    border-radius: 6px;
-}
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            font-size: 13px;
+        }
 
-a:hover {
-    background-color: #d17b18;
-}
-</style>
+        tr:nth-child(even) { background-color: #f2f2f2; }
 
-<script>
-function loadSignups(){
-    let records = localStorage.getItem("signups");
-
-    if(records === null){
-        document.getElementById("output").innerHTML = "No signups found.";
-        document.getElementById("total").innerHTML = "";
-        return;
-    }
-
-    records = JSON.parse(records);
-
-    let selectedClub = document.getElementById("filter").value;
-
-    let filtered = records;
-
-    if(selectedClub !== "All"){
-        filtered = records.filter(r => r.club === selectedClub);
-    }
-
-    if(filtered.length === 0){
-        document.getElementById("output").innerHTML = "No signups for this club.";
-        document.getElementById("total").innerHTML = "Total: 0";
-        return;
-    }
-
-    let html = "<table>";
-    html += "<tr><th>ID</th><th>Name</th><th>Birthday</th><th>Email</th><th>Mobile</th><th>Grade</th><th>Status</th><th>Club</th><th>Reason</th></tr>";
-
-    filtered.forEach(r => {
-        html += `<tr>
-                    <td>${r.id}</td>
-                    <td>${r.fullname}</td>
-                    <td>${r.birthday}</td>
-                    <td>${r.email}</td>
-                    <td>${r.mobile}</td>
-                    <td>${r.grade}</td>
-                    <td>${r.status}</td>
-                    <td>${r.club}</td>
-                    <td>${r.reason}</td>
-                 </tr>`;
-    });
-
-    html += "</table>";
-
-    document.getElementById("output").innerHTML = html;
-    document.getElementById("total").innerHTML = "Total: " + filtered.length;
-}
-</script>
-
+        #no-data-msg {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            color: #333;
+        }
+    </style>
 </head>
 
-<body onload="loadSignups()">
+<body>
+    <div class="container">
+        <h1>Show List of Students Who Signed-Up</h1>
+        <p class="author">by Leian Sandhel A.</p>
+        
+        <a href="signup.html" class="back-link">Back to Signup</a>
 
-<h2>Club Signups</h2>
+        <div class="filter-section">
+            <label for="clubFilter">Select Your Club </label>
+            <select id="clubFilter" onchange="filterTable()">
+                <option value="ALL">-- select an option --</option>
+                <option value="Bake Club">Bake Club</option>
+                <option value="Himig Agham">Himig Agham</option>
+                <option value="Computron">Computron</option>
+            </select>
+        </div>
 
-<select id="filter" onchange="loadSignups()">
-    <option value="All">All</option>
-    <option value="Bake Club">Bake Club</option>
-    <option value="Computron">Computron</option>
-    <option value="Himig Agham">Himig Agham</option>
-</select>
+        <p>Total Signup : <span id="signupCount">0</span></p>
 
-<div id="output"></div>
-<h3 id="total"></h3>
+        <table id="signupTable">
+            <thead>
+                <tr>
+                    <th>Club</th>
+                    <th>ID</th>
+                    <th>Fullname</th>
+                    <th>Grade</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Intern|Extern</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr data-club="Bake Club">
+                    <td>Bake Club</td>
+                    <td>123456</td>
+                    <td>Aline Teresa L MENDOZA</td>
+                    <td>Grade 9</td>
+                    <td>alinemendoza@yahoo.com</td>
+                    <td>09177085917</td>
+                    <td>Extern</td>
+                </tr>
+                <tr data-club="Himig Agham">
+                    <td>Himig Agham</td>
+                    <td>567890</td>
+                    <td>Adel L MENDOZA</td>
+                    <td>Grade 10</td>
+                    <td>alinemendoza@yahoo.com</td>
+                    <td>09177085917</td>
+                    <td>Intern</td>
+                </tr>
+            </tbody>
+        </table>
 
-<a href="Q3 index.html"> Back to Sign-Up Page</a>
+        <div id="no-data-msg">No Sign Ups for the club</div>
+    </div>
 
+    <script>
+        function filterTable() {
+            const filter = document.getElementById("clubFilter").value;
+            const rows = document.querySelectorAll("#tableBody tr");
+            const msg = document.getElementById("no-data-msg");
+            const table = document.getElementById("signupTable");
+            let visibleCount = 0;
+
+            rows.forEach(row => {
+                const club = row.getAttribute("data-club");
+                if (filter === "ALL" || club === filter) {
+                    row.style.display = "";
+                    visibleCount++;
+                } else {
+                    row.style.display = "none";
+                }
+            });
+
+            document.getElementById("signupCount").innerText = visibleCount;
+
+            if (visibleCount === 0) {
+                table.style.display = "none";
+                msg.style.display = "block";
+            } else {
+                table.style.display = "table";
+                msg.style.display = "none";
+            }
+        }
+
+        window.onload = filterTable;
+    </script>
 </body>
 </html>
