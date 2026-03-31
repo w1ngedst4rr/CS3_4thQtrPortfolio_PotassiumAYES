@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>View Signups</title>
+
+<style>
+body {
+    font-family: Arial;
+    text-align: center;
+    background-color: #f4f6f8;
+}
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 90%;
+    background-color: #fff;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+th {
+    background-color: #4a76d1;
+    color: white;
+}
+
+select {
+    margin: 15px;
+    padding: 5px;
+}
+</style>
+
+<script>
+function loadSignups(){
+    let records = localStorage.getItem("signups");
+
+    if(records === null){
+        document.getElementById("output").innerHTML = "No signups found.";
+        document.getElementById("total").innerHTML = "";
+        return;
+    }
+
+    records = JSON.parse(records);
+
+    let selectedClub = document.getElementById("filter").value;
+
+    let filtered = records;
+
+    if(selectedClub !== "All"){
+        filtered = records.filter(r => r.club === selectedClub);
+    }
+
+    if(filtered.length === 0){
+        document.getElementById("output").innerHTML = "No signups for this club.";
+        document.getElementById("total").innerHTML = "Total: 0";
+        return;
+    }
+
+    let html = "<table>";
+    html += "<tr><th>ID</th><th>Name</th><th>Birthday</th><th>Email</th><th>Mobile</th><th>Grade</th><th>Status</th><th>Club</th><th>Reason</th></tr>";
+
+    filtered.forEach(r => {
+        html += `<tr>
+                    <td>${r.id}</td>
+                    <td>${r.fullname}</td>
+                    <td>${r.birthday}</td>
+                    <td>${r.email}</td>
+                    <td>${r.mobile}</td>
+                    <td>${r.grade}</td>
+                    <td>${r.status}</td>
+                    <td>${r.club}</td>
+                    <td>${r.reason}</td>
+                 </tr>`;
+    });
+
+    html += "</table>";
+
+    document.getElementById("output").innerHTML = html;
+    document.getElementById("total").innerHTML = "Total: " + filtered.length;
+}
+</script>
+
+</head>
+
+<body onload="loadSignups()">
+
+<h2>Club Signups</h2>
+
+<select id="filter" onchange="loadSignups()">
+    <option value="All">All</option>
+    <option value="Bake Club">Bake Club</option>
+    <option value="Computron">Computron</option>
+    <option value="Himig Agham">Himig Agham</option>
+</select>
+
+<div id="output"></div>
+
+<h3 id="total"></h3>
+
+<br>
+<a href="index.html"> Back to Signup</a>
+
+</body>
+</html>
