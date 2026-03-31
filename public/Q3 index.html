@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Centralized Club Application</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+}
+
+form {
+    width: 650px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+fieldset {
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+legend {
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    margin-bottom: 12px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 6px;
+    margin-top: 4px;
+}
+
+input:focus, select:focus, textarea:focus {
+    background-color: #e8f0ff;
+    border: 2px solid #4a76d1;
+    outline: none;
+}
+
+.error {
+    border: 2px solid red;
+    background-color: #ffecec;
+}
+
+.buttons {
+    text-align: center;
+}
+
+.buttons input {
+    width: 150px;
+    margin: 5px;
+}
+</style>
+
+<script>
+function checkEmpty(input){
+    if(input.value.trim() === ""){
+        input.classList.add("error");
+    } else {
+        input.classList.remove("error");
+    }
+}
+
+function confirmReset(){
+    return confirm("Are you sure you want to reset?");
+}
+
+function saveSignup(event){
+    event.preventDefault();
+
+    if(!confirm("Are you sure you want to submit this application?")){
+        return;
+    }
+
+    let signup = {
+        id: document.querySelector("[name=studentID]").value,
+        fullname: document.querySelector("[name=fullName]").value,
+        birthday: document.querySelector("[name=birthday]").value,
+        email: document.querySelector("[name=email]").value,
+        mobile: document.querySelector("[name=mobile]").value,
+        grade: document.querySelector("[name=gradeLevel]").value,
+        status: document.querySelector("input[name=status]:checked").value,
+        club: document.querySelector("[name=club]").value,
+        reason: document.querySelector("[name=reason]").value
+    };
+
+    let records = localStorage.getItem("signups");
+    if(records === null){
+        records = [];
+    } else {
+        records = JSON.parse(records);
+    }
+
+    records.push(signup);
+
+    localStorage.setItem("signups", JSON.stringify(records));
+
+    alert("Saved Successfully!");
+    document.querySelector("form").reset();
+}
+
+function viewSignups(){
+    window.location.href = "viewSignUps.html";
+}
+</script>
+</head>
+
+<body>
+
+<form onsubmit="saveSignup(event)" onreset="return confirmReset()">
+
+<fieldset>
+<legend>Personal Information</legend>
+
+<label>
+Student ID:
+<input type="number" name="studentID" required onblur="checkEmpty(this)">
+</label>
+
+<label>
+Full Name:
+<input type="text" name="fullName" required onblur="checkEmpty(this)">
+</label>
+
+<label>
+Birthday:
+<input type="date" name="birthday" required>
+</label>
+
+<label>
+Email Address:
+<input type="email" name="email" required onblur="checkEmpty(this)">
+</label>
+</fieldset>
+
+<fieldset>
+<legend>Membership Information</legend>
+
+<label>
+Mobile Phone:
+<input type="text" name="mobile" required onblur="checkEmpty(this)">
+</label>
+
+<label>
+Grade Level:
+<select name="gradeLevel" required>
+<option value="">-- Select Grade --</option>
+<option value="Grade 7">Grade 7</option>
+<option value="Grade 8">Grade 8</option>
+<option value="Grade 9">Grade 9</option>
+<option value="Grade 10">Grade 10</option>
+<option value="Grade 11">Grade 11</option>
+<option value="Grade 12">Grade 12</option>
+</select>
+</label>
+
+<label>
+Intern / Extern:
+<input type="radio" name="status" value="Intern" required> Intern
+<input type="radio" name="status" value="Extern"> Extern
+</label>
+
+<label>
+Preferred Organization / Club:
+<select name="club" required>
+<option value="">-- Select Club --</option>
+<option value="Bake Club">Bake Club</option>
+<option value="Computron">Computron</option>
+<option value="Himig Agham">Himig Agham</option>
+</select>
+</label>
+
+<label>
+Why do you want to join:
+<textarea name="reason" rows="4" required></textarea>
+</label>
+</fieldset>
+
+<div class="buttons">
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+    <input type="button" value="View Signups" onclick="viewSignups()">
+</div>
+
+</form>
+
+</body>
+</html>
